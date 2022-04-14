@@ -1,14 +1,17 @@
 <template>
-  <router-view></router-view>
+  <div>
+    <div>登陆</div>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'App',
-  components: {}
+  setup() {
+    return {}
+  }
 })
 </script>
 
-<style lang="less"></style>
+<style></style>
