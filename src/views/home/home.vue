@@ -5,19 +5,6 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { onMounted } from 'vue'
-import myRequest from '@/network'
-
-onMounted(() => {
-  myRequest
-    .get({
-      url: '/home/multidata'
-    })
-    .then((res) => {
-      console.log(res)
-    })
-})
-</script>
+<script lang="ts" setup></script>
 
 <style></style>

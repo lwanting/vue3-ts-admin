@@ -1,10 +1,19 @@
 import MyRequest from './request'
+import localCache from '@/utils/cache'
 
 const request = new MyRequest({
-  baseURL: 'http://123.207.32.32:8000',
+  baseURL: 'http://152.136.185.210:5000',
   timeout: 100000,
   interceptors: {
     requestInterceptor: (config) => {
+      const token = localCache.getCache('token')
+      if (token) {
+        if (config.headers) {
+          config.headers.Authorization = `Bearer ${token}`
+        } else {
+          config.headers = { Authorization: `Bearer ${token}` }
+        }
+      }
       return config
     },
     requestInterceptorError: (err) => {

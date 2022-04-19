@@ -5,7 +5,7 @@ import { ElLoading } from 'element-plus'
 import { LoadingInstance } from 'element-plus/lib/components/loading/src/loading'
 
 const DEFAULT_LOADING = true
-class myRequest {
+class MyRequest {
   instance: AxiosInstance
   interceptors?: MyInterceptors
   showLoading?: boolean
@@ -28,7 +28,6 @@ class myRequest {
 
     this.instance.interceptors.request.use(
       (config) => {
-        console.log(this.showLoading)
         if (this.showLoading) {
           this.loading = ElLoading.service({
             lock: false,
@@ -94,4 +93,4 @@ class myRequest {
   }
 }
 
-export default myRequest
+export default MyRequest
