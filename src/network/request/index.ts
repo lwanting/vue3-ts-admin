@@ -3,6 +3,7 @@ import type { AxiosInstance } from 'axios'
 import type { MyRequestConfig, MyInterceptors } from './type'
 import { ElLoading } from 'element-plus'
 import { LoadingInstance } from 'element-plus/lib/components/loading/src/loading'
+import 'element-plus/theme-chalk/el-loading.css'
 
 const DEFAULT_LOADING = true
 class MyRequest {
@@ -32,7 +33,7 @@ class MyRequest {
           this.loading = ElLoading.service({
             lock: false,
             text: '加载中...',
-            background: 'rgba(0, 0, 0, 0.3)'
+            background: 'rgba(0, 0, 0, 0.5)'
           })
         }
         return config
