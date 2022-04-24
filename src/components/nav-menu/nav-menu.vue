@@ -26,14 +26,18 @@
               :key="item.id"
               :index="item.id + ''"
             >
-              <i v-if="menu.icon" :class="menu.icon"></i>
+              <el-icon>
+                <component :is="menuIcon(menu.icon)" v-if="menu.icon" />
+              </el-icon>
               <span>{{ item.name }}</span>
             </el-menu-item>
           </el-sub-menu>
         </template>
         <template v-else-if="menu.type === 2">
           <el-menu-item :index="menu.id + ''">
-            <i v-if="menu.icon" :class="menu.icon"></i>
+            <el-icon>
+              <component :is="menuIcon(menu.icon)" v-if="menu.icon" />
+            </el-icon>
             <span>{{ menu.name }}</span></el-menu-item
           >
         </template>
