@@ -5,15 +5,22 @@ import localCache from '@/utils/cache'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/main'
   },
   {
     path: '/login',
+    name: 'login',
     component: () => import('@/views/login/login.vue')
   },
   {
-    path: '/home',
-    component: () => import('@/views/home/home.vue')
+    path: '/main',
+    name: 'main',
+    component: () => import('@/views/main/main.vue')
+  },
+  {
+    path: '/:pathMath(.*)*',
+    name: 'notFound',
+    component: () => import('@/views/not-found/not-found.vue')
   }
 ]
 

@@ -8,6 +8,7 @@ import {
   requestUserMenusById
 } from '@/network/request/login/login'
 import localCache from '@/utils/cache'
+import { mapMenuToRouter } from '@/utils/map-menu'
 import router from '@/router'
 
 const loginModule: Module<LoginState, RootState> = {
@@ -29,6 +30,11 @@ const loginModule: Module<LoginState, RootState> = {
     },
     changeUserMenus(state, userMenus: any) {
       state.userMenus = userMenus
+      const routes = mapMenuToRouter(userMenus)
+      routes.forEach((route) => {
+        router.addRoute('main', route)
+      })
+      console.log(router)
     }
   },
   actions: {
@@ -51,7 +57,7 @@ const loginModule: Module<LoginState, RootState> = {
       commit('changeUserMenus', userMenus)
       localCache.setCache('userMenus', userMenus)
 
-      router.push('/home')
+      router.push('/main')
     },
     loadLocalLogin({ commit }) {
       const token = localCache.getCache('token')

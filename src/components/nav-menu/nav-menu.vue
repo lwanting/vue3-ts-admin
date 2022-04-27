@@ -25,6 +25,7 @@
               v-for="item in menu.children"
               :key="item.id"
               :index="item.id + ''"
+              @click="onChangeMenu(item)"
             >
               <el-icon>
                 <component :is="menuIcon(menu.icon)" v-if="menu.icon" />
@@ -34,7 +35,7 @@
           </el-sub-menu>
         </template>
         <template v-else-if="menu.type === 2">
-          <el-menu-item :index="menu.id + ''">
+          <el-menu-item :index="menu.id + ''" @click="onChangeMenu(menu)">
             <el-icon>
               <component :is="menuIcon(menu.icon)" v-if="menu.icon" />
             </el-icon>
@@ -49,6 +50,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useStore } from '@/store'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   props: {
@@ -58,15 +60,22 @@ export default defineComponent({
     }
   },
   setup() {
+    const router = useRouter()
     const store = useStore()
     const userMenus = computed(() => store.state.login.userMenus)
 
     const menuIcon = (icon: string) => {
       return icon.replace('el-icon-', '')
     }
+    const onChangeMenu = (menu: any) => {
+      router.push({
+        path: menu.url ?? '/not-found'
+      })
+    }
     return {
       userMenus,
-      menuIcon
+      menuIcon,
+      onChangeMenu
     }
   }
 })
